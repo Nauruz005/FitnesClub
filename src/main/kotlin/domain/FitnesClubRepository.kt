@@ -1,10 +1,10 @@
-package data
+package domain
 
 import model.Client
-import model.Ticket.Ticket
+import model.Ticket
 import model.Trainer
 
-interface FitnesClubDataSourse {
+interface FitnesClubRepository {
     fun getClients(): List<Client>
     fun getTrainer(): List<Trainer>
     fun getTickets(): List<Ticket>
