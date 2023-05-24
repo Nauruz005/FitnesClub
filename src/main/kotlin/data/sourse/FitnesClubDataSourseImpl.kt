@@ -7,7 +7,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 
 class FitnesClubDataSourseImpl: FitnesClubDataSourse {
-    private val fileNameOne = "C:\\Users\\harot\\OneDrive\\Документы\\Данные о клеентах.csv"
+    private val fileNameOne = "Clients.csv"
     fun readCsvFilefileNameOne(): List<String> {
         val bufferedReader = Files.newBufferedReader(Paths.get(fileNameOne))
         var result = mutableListOf<String>()
@@ -19,11 +19,11 @@ class FitnesClubDataSourseImpl: FitnesClubDataSourse {
     }
 
     override fun getClients(): List<Client> = readCsvFilefileNameOne().map { client ->
-        val (name, id) = client.split(",")
-        return@map Client(name, id.toInt())
+        val (name, id, status) = client.split(",")
+        return@map Client(name, id.toInt(), status)
     }
 
-    private val fileNameTwo = "C:\\Users\\harot\\OneDrive\\Документы\\Данные тренеров.csv"
+    private val fileNameTwo = "Trainers.csv"
     fun readCsvFilefileNameTwo(): List<String> {
         val bufferedReader = Files.newBufferedReader(Paths.get(fileNameTwo))
         var result = mutableListOf<String>()
@@ -38,7 +38,7 @@ class FitnesClubDataSourseImpl: FitnesClubDataSourse {
         return@map Trainer(name, id.toInt())
     }
 
-    private val fileNameThree = "C:\\Users\\harot\\OneDrive\\Документы\\Данные об абонементах.csv"
+    private val fileNameThree = "Tickets.csv"
     fun readCsvFilefileNameThree(): List<String> {
         val bufferedReader = Files.newBufferedReader(Paths.get(fileNameThree))
         var result = mutableListOf<String>()
