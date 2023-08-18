@@ -17,7 +17,8 @@ class FitnesClubUseCaseImpl(private val repository: FitnesClubRepository): Fitne
 
     //Ищет самого популярного тренера
     override fun getTheMostPopularTrainer(): String? {
-        val countByElement = repository.getTrainer().filter { it.name != "No" }.groupingBy { it.name }.eachCount()
+        val no = "No"
+        val countByElement = repository.getTrainer().filter { it.name != no }.groupingBy { it.name }.eachCount()
         val maximumElement = countByElement.maxBy { it.value }?.key
         return maximumElement
     }
@@ -25,9 +26,10 @@ class FitnesClubUseCaseImpl(private val repository: FitnesClubRepository): Fitne
 
     //  Выводит "статус" клиента
     override fun getClientStatus(id: Int): String? {
+        val vip = "VIP"
         var clientStatus = getClientId(id)?.status
         if(id == getClientId(id)?.id && id == getTicketId(id)?.idTicket && getTicketId(id)?.price!! >= 2000){
-           clientStatus = "VIP"
+           clientStatus = vip
         }
         return clientStatus
     }
